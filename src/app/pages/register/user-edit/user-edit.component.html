@@ -1,0 +1,163 @@
+<div class="header bg-gradient-danger pb-8 pt-5 ">
+
+</div>
+
+
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-12 order-xl-1">
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">{{ titleEdit }}</h3>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formUser">
+
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-user_id">Id</label>
+                                        <input type="text" id="input-id" class="form-control form-control-alternative" formControlName="user_id">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first_name">Nombres</label>
+                                        <input type="text" id="input-first_name" class="form-control form-control-alternative" formControlName="first_name">
+                                        <small *ngIf="this.formUser.get('first_name').invalid && this.formUser.get('first_name').touched" class="text-danger">Campo requerido y de más de 3 caracteres</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-second_name">Apellidos</label>
+                                        <input type="text" id="input-second_name" class="form-control form-control-alternative" formControlName="second_name">
+                                        <small *ngIf="this.formUser.get('second_name').invalid && this.formUser.get('second_name').touched" class="text-danger">Campo requerido y de más de 3 caracteres</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-dpi">Dpi</label>
+                                        <input type="text" id="input-dpi" class="form-control form-control-alternative" formControlName="dpi">
+                                        <small *ngIf="this.formUser.get('dpi').invalid && this.formUser.get('dpi').touched" class="text-danger">Campo requerido y de más de 10 caracteres</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-email">Email</label>
+                                        <input type="email" id="input-email" class="form-control form-control-alternative" formControlName="email">
+                                        <small *ngIf="this.formUser.get('email').invalid && this.formUser.get('email').touched" class="text-danger">Campo requerido y de tipo email</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-address">Dirección</label>
+                                        <input type="text" id="input-address" class="form-control form-control-alternative" formControlName="address">
+                                        <small *ngIf="this.formUser.get('address').invalid && this.formUser.get('address').touched" class="text-danger">Campo requerido y de más de 10 caracteres</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-birth_date">Fecha de nacimiento</label>
+                                        <input type="date" id="input-birth_date" class="form-control form-control-alternative" formControlName="birth_date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-telephone">Telefono</label>
+                                        <input type="text" id="input-telephone" class="form-control form-control-alternative" formControlName="telephone">
+                                        <small *ngIf="this.formUser.get('telephone').invalid && this.formUser.get('telephone').touched" class="text-danger">Campo requerido</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6" *ngIf="userId==0">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-password">Password</label>
+                                        <input type="password" id="input-password" class="form-control form-control-alternative" formControlName="password">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-rol">Rol</label>
+                                        <select class="custom-select" formControlName="rol_id">
+                                            <option *ngFor="let rol of roles" value="{{rol.rol_id}}" selected>{{ rol.name }}</option>
+                                        </select>
+                                        <small *ngIf="this.formUser.get('rol_id').invalid && this.formUser.get('rol_id').touched" class="text-danger">Campo requerido</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-status">Estado</label>
+                                        <select class="custom-select" formControlName="status">
+                                            <option value="0">Inactivo</option>
+                                            <option value="1">Activo</option>
+                                        </select>
+                                        <small *ngIf="this.formUser.get('status').invalid && this.formUser.get('status').touched" class="text-danger">Campo requerido</small>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary mt-4" [disabled]="!formUser.valid" (click)="save()">Guardar</button>
+                                <button type="button" class="btn btn-warning mt-4" (click)="return()">Cancelar</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!--
+<div class="container">
+    <div class="row ">
+        <div class="card-body px-lg-5 py-lg-5">
+            <div class="text-center text-muted mb-4">
+                <small>Editar usuario</small>
+            </div>
+            <form role="form">
+                <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Name" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Email" type="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Password" type="password">
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary mt-4">Create account</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+-->

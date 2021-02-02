@@ -1,0 +1,78 @@
+<div class="header bg-gradient-danger pb-8 pt-5 ">
+
+</div>
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col">
+            <div class="card bg-default shadow">
+                <div class="card-header bg-transparent  border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="text-white mb-0">Pago de servicios</h3>
+                        </div>
+                        <div class="col text-right">
+                            <button class="btn btn-sm btn-warning" [routerLink]="['/payment']">Regresar</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-dark table-flush">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">local</th>
+                                <th scope="col">Servicio</th>
+                                <th scope="col">Monto</th>
+                                <th scope="col">Mes</th>
+                                <th scope="col">Año</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col" *ngIf="rol_id == 4"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let localService of localServices">
+
+                                <td>
+                                    {{ localService.local_service_id }}
+                                </td>
+                                <td>
+                                    {{ localService.local }}
+                                </td>
+                                <td>
+                                    {{ localService.service }}
+                                </td>
+                                <td>
+                                    {{ localService.payment | currency:'Q' }}
+                                </td>
+                                <td>
+                                    {{ localService.month }}
+                                </td>
+                                <td>
+                                    {{ localService.year }}
+                                </td>
+                                <td [style.color]="setColor( localService.status)">
+                                    {{ getStatus(localService.status )}}
+                                </td>
+
+                                <td class="text-right" *ngIf="rol_id == 4">
+                                    <div ngbDropdown placement="bottom-right" *ngIf="localService.status == 1">
+                                        <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="javascript:void(0)" (click)="openDialog( localService )">Pagar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

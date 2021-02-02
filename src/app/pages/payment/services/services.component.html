@@ -1,0 +1,68 @@
+<div class="header bg-gradient-danger pb-8 pt-5 ">
+
+</div>
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col">
+            <div class="card bg-default shadow">
+                <div class="card-header bg-transparent  border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="text-white mb-0">Servicios</h3>
+                        </div>
+                        <div>
+                            <!--<button (click)="printServices()" class="btn btn-sm btn-youtube">Exportar</button>-->
+                            <button class="btn btn-sm btn-primary" [routerLink]="['/payment/services/service-edit/0']">Agregar</button>
+                            <button class="btn btn-sm btn-warning" [routerLink]="['/payment']">Regresar</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-dark table-flush">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let service of services">
+
+                                <td>
+                                    {{ service.service_id }}
+                                </td>
+                                <td>
+                                    {{ service.name }}
+                                </td>
+                                <td>
+                                    {{ service.description }}
+                                </td>
+                                <td [style.color]="setColor( service.status)">
+                                    {{ getStatus(service.status )}}
+                                </td>
+
+                                <td class="text-right">
+                                    <div ngbDropdown placement="bottom-right">
+                                        <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/payment/services/service-edit/'+ service.service_id ]">Actualizar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

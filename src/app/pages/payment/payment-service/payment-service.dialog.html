@@ -1,0 +1,119 @@
+<mat-dialog-content class="mat-typography">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 order-xl-1">
+                <div class="card bg-secondary shadow">
+                    <div class="card-header bg-white border-0">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">Pago</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="formPaymentService">
+
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-alternative mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="ni ni-credit-card"></i></span>
+                                                </div>
+                                                <input type="password" id="card_number" class="form-control form-control-alternative" placeholder="No. Tarjeta" formControlName="card_number">
+                                                <small *ngIf="this.formPaymentService.get('card_number').invalid && this.formPaymentService.get('card_number').touched" class="text-danger">Campo requerido</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-alternative mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="ni ni-ui-04"></i></span>
+                                                </div>
+                                                <select class="custom-select" id="inputGroupSelect01" formControlName="card_type_id">
+                                                    <option *ngFor="let cardType of cardTypes" value="{{cardType.card_type_id}}">{{ cardType.name}}</option>
+                                                </select>
+                                                <small *ngIf="this.formPaymentService.get('card_type_id').invalid && this.formPaymentService.get('card_type_id').touched" class="text-danger">Elija una opción</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-alternative mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                                </div>
+                                                <input type="text" id="expiration" class="form-control form-control-alternative" placeholder="CV" formControlName="postal_code">
+                                                <small *ngIf="this.formPaymentService.get('postal_code').invalid && this.formPaymentService.get('postal_code').touched" class="text-danger">Campo requerido</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-alternative mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                                </div>
+                                                <select class="custom-select" id="inputGroupSelect02" formControlName="expiration_month">
+                                                    <option  value="01">01</option>
+                                                    <option  value="02">02</option>
+                                                    <option  value="03">03</option>
+                                                    <option  value="04">04</option>
+                                                    <option  value="05">05</option>
+                                                    <option  value="06">06</option>
+                                                    <option  value="07">07</option>
+                                                    <option  value="08">08</option>
+                                                    <option  value="09">09</option>
+                                                    <option  value="10">10</option>
+                                                    <option  value="11">11</option>
+                                                    <option  value="12">12</option>
+                                                </select>
+                                                <small *ngIf="this.formPaymentService.get('expiration_month').invalid && this.formPaymentService.get('expiration_month').touched" class="text-danger">Elija una mes</small>
+                                                <select class="custom-select" id="inputGroupSelect03" formControlName="expiration_year">
+                                                    <option  value="20">20</option>
+                                                    <option  value="21">21</option>
+                                                    <option  value="22">22</option>
+                                                    <option  value="23">23</option>
+                                                    <option  value="24">24</option>
+                                                    <option  value="25">25</option>
+                                                    <option  value="26">26</option>
+                                                </select>
+                                                <small *ngIf="this.formPaymentService.get('expiration_year').invalid && this.formPaymentService.get('expiration_year').touched" class="text-danger">Elija una año</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label>Monto a pagar: {{data.localService.payment | currency:'Q'}}</label>
+                                    </div>
+
+
+
+
+
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="btn btn-success" [disabled]="!formPaymentService.valid" (click)="payService()">Pagar</button>
+    <button class="btn btn-warning" mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

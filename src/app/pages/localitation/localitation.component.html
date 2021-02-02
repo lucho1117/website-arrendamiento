@@ -1,0 +1,77 @@
+<div class="header bg-gradient-danger pb-8 pt-5 ">
+
+</div>
+
+
+<div class="container-fluid mt--7">
+
+    <div class="card">
+        <div class="row " style="margin: 10px; ">
+            <div class="col-xl-2 col-lg-6 " *ngFor="let local of locales " style="margin-top: 10px; ">
+                <div class="card card-stats mb-4 mb-xl-0 " (click)="openDialog( local ) " style="background-color: #CDCFD1;">
+                    <div class="card-body ">
+                        <div class="row ">
+                            <div class="col ">
+                                <h5 class="card-title text-uppercase text-muted mb-0 ">Id: {{local.local_id}}</h5>
+                                <span class="h2 font-weight-bold mb-0 ">{{local.name}}</span>
+                            </div>
+
+                            <div *ngIf="local.sector_id==1 || local.sector_id == 8 " class="col-auto ">
+                                <div class="icon icon-shape bg-yellow text-white rounded-circle shadow ">
+                                    <i class="ni ni-basket "></i>
+                                </div>
+                            </div>
+
+                            <div *ngIf="local.sector_id==2 || local.sector_id == 9 " class="col-auto ">
+                                <div class="icon icon-shape bg-red text-white rounded-circle shadow ">
+                                    <i class="ni ni-basket "></i>
+                                </div>
+                            </div>
+
+                            <div *ngIf="local.sector_id==3 || local.sector_id == 10 " class="col-auto ">
+                                <div class="icon icon-shape bg-blue text-white rounded-circle shadow ">
+                                    <i class="ni ni-basket "></i>
+                                </div>
+                            </div>
+
+                            <div *ngIf="local.sector_id==4 " class="col-auto ">
+                                <div class="icon icon-shape bg-info text-white rounded-circle shadow ">
+                                    <i class="ni ni-basket "></i>
+                                </div>
+                            </div>
+
+                            <div *ngIf="local.sector_id==5 " class="col-auto ">
+                                <div class="icon icon-shape bg-dark text-white rounded-circle shadow ">
+                                    <i class="ni ni-basket "></i>
+                                </div>
+                            </div>
+
+                            <div *ngIf="local.sector_id==6 " class="col-auto ">
+                                <div class="icon icon-shape bg-orange text-white rounded-circle shadow ">
+                                    <i class="ni ni-basket "></i>
+                                </div>
+                            </div>
+
+                            <div *ngIf="local.sector_id==7 " class="col-auto ">
+                                <div class="icon icon-shape bg-maroon text-white rounded-circle shadow ">
+                                    <i class="ni ni-basket "></i>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm ">
+                            <span class="text-success mr-2 "><i class="fa fa-arrow-up "></i> </span>
+                            <span class="text-nowrap ">{{local.sector}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div style="margin-top: 10px;" align="center">
+                    <i class="ni ni-fat-delete "></i>
+                    <i class="ni ni-bold-right "></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

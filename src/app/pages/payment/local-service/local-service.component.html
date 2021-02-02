@@ -1,0 +1,137 @@
+<div class="header bg-gradient-danger pb-8 pt-5 ">
+
+</div>
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div style="text-align: right;">
+                        <button class="btn btn-sm btn-info" (click)="getLocalServices( local_id, service_id, year, status_id, month)">Filtrar</button>
+                        <button class="btn btn-sm btn-youtube" (click)="printLocalService()">Exportar</button>
+                        <button class="btn btn-sm btn-primary" [routerLink]="['/payment/local-services/local-service-edit/0']">Agregar</button>
+                        <button class="btn btn-sm btn-warning" [routerLink]="['/payment']">Regresar</button>
+                    </div>
+                    <br>
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="text-black mb-0">Servicios por local</h3>
+                        </div>
+                        <div class="col-lg-2">
+                            <span>Local</span>
+                            <select class="custom-select" [(ngModel)]="local_id">
+                                    <option *ngFor="let local of locales" value="{{local.local_id}}" selected>{{ local.name }}</option>                          
+                             </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <span>Servicio</span>
+                            <select class="custom-select" [(ngModel)]="service_id">
+                                    <option *ngFor="let service of services" value="{{service.service_id}}" selected>{{ service.name }}</option>                          
+                             </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <span>Año</span>
+                            <select class="custom-select" [(ngModel)]='year'>
+                                <option value="0">Todos</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2016">2021</option>
+                                <option value="2017">2022</option>
+                                <option value="2018">2023</option>
+                                <option value="2018">2024</option>
+                                <option value="2019">2025</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <span>Mes</span>
+                            <select class="custom-select" [(ngModel)]='month'>
+                                <option value="Todos">Todos</option>
+                                <option value="Enero">Enero</option>
+                                <option value="Febrero">Febrero</option>
+                                <option value="Marzo">Marzo</option>
+                                <option value="Abril">Abril</option>
+                                <option value="Mayo">Mayo</option>
+                                <option value="Junio">Junio</option>
+                                <option value="Julio">Julio</option>
+                                <option value="Agosto">Agosto</option>
+                                <option value="Septiembre">Septiembre</option>
+                                <option value="Octubre">Octubre</option>
+                                <option value="Noviembre">Noviembre</option>
+                                <option value="Diciembre">Diciembre</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <span>Estado</span>
+                            <select class="custom-select" [(ngModel)]="status_id">
+                                    <option *ngFor="let statu of status" value="{{statu.status_id}}" selected>{{ statu.name }}</option>                          
+                             </select>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">local</th>
+                                <th scope="col">Servicio</th>
+                                <th scope="col">Monto</th>
+                                <th scope="col">Mes</th>
+                                <th scope="col">Año</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let localService of localServices">
+
+                                <td>
+                                    {{ localService.local_service_id }}
+                                </td>
+                                <td>
+                                    {{ localService.local }}
+                                </td>
+                                <td>
+                                    {{ localService.service }}
+                                </td>
+                                <td>
+                                    {{ localService.payment | currency:'Q' }}
+                                </td>
+                                <td>
+                                    {{ localService.month }}
+                                </td>
+                                <td>
+                                    {{ localService.year }}
+                                </td>
+                                <td [style.color]="setColor( localService.status)">
+                                    {{ getStatus(localService.status )}}
+                                </td>
+
+                                <td class="text-right">
+                                    <div ngbDropdown placement="bottom-right" *ngIf="localService.status == 1">
+                                        <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/payment/local-services/local-service-edit/'+ localService.local_service_id ]">Actualizar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <app-info-data [flagData]="flagLocalServices"></app-info-data>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

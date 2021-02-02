@@ -1,0 +1,99 @@
+<div class="header bg-gradient-danger pb-8 pt-5 ">
+
+</div>
+
+
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-12 order-xl-1">
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">{{ titleEdit }}</h3>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formLocal">
+
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-local_id">Id</label>
+                                        <input type="text" id="input-username" class="form-control form-control-alternative" formControlName="local_id">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-name">Nombre</label>
+                                        <input type="text" id="input-username" class="form-control form-control-alternative" formControlName="name">
+                                        <small *ngIf="this.formLocal.get('name').invalid && this.formLocal.get('name').touched" class="text-danger">Campo requerido y de más de 3 caracteres</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-description">Descripción</label>
+                                        <input type="text" id="input-email" class="form-control form-control-alternative" formControlName="description">
+                                        <small *ngIf="this.formLocal.get('description').invalid && this.formLocal.get('description').touched" class="text-danger">Campo requerido y de más de 10 caracteres</small>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-sector">Sector</label>
+                                        <select class="custom-select" id="inputGroupSelect01" formControlName="sector_id">
+                                            <option *ngFor="let sector of sectores" value="{{sector.sector_id}}" selected>{{ sector.name }}</option>                          
+                                        </select>
+                                        <small *ngIf="this.formLocal.get('sector_id').invalid && this.formLocal.get('sector_id').touched" class="text-danger">Elija una opción</small>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Propietario</label>
+                                        <select class="custom-select" id="inputGroupSelect01" formControlName="propietario_id">
+                                            <option *ngFor="let propietario of propietarios" value="{{propietario.user_id}}" selected>{{ propietario.first_name }}</option> 
+                                        </select>
+                                        <small *ngIf="this.formLocal.get('propietario_id').invalid && this.formLocal.get('propietario_id').touched" class="text-danger">Elija una opción</small>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Inquilino</label>
+                                        <select class="custom-select" id="inputGroupSelect01" formControlName="inquilino_id">
+                                            <option *ngFor="let inquilino of inquilinos" value="{{inquilino.user_id}}" selected>{{ inquilino.first_name }}</option>                          
+                                        </select>
+                                        <small *ngIf="this.formLocal.get('inquilino_id').invalid && this.formLocal.get('inquilino_id').touched" class="text-danger">Elija una opción</small>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="status">Estado</label>
+                                        <select class="custom-select" id="inputGroupSelect01" formControlName="status">
+                                            <option value="0">Inactivo</option>
+                                            <option value="1">Activo</option>
+                                        </select>
+                                        <small *ngIf="this.formLocal.get('status').invalid && this.formLocal.get('status').touched" class="text-danger">Elija una opción</small>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary mt-4" [disabled]="!formLocal.valid" (click)="save()">Guardar</button>
+                                <button type="button" class="btn btn-warning mt-4" (click)="return()">Cancelar</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

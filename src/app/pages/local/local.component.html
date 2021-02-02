@@ -1,0 +1,132 @@
+<div class="header bg-gradient-danger pb-8 pt-5 ">
+
+</div>
+
+<div class="container-fluid mt--7">
+
+    <div class="row" *ngIf="rol_id >= 3">
+        <div class="col-xl-3 col-lg-6" *ngFor="let local of locales">
+            <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="card-title text-uppercase text-muted mb-0">Id: {{local.local_id}}</h5>
+                            <span class="h2 font-weight-bold mb-0">{{local.name}}</span>
+                        </div>
+                        <div class="col-auto">
+                            <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                                <i class="ni ni-basket"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-3 mb-0 text-muted text-sm">
+                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> %</span>
+                        <span class="text-nowrap">{{local.description.substr(0,20)}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="rol_id <=2">
+
+        <div class="col-xl-4">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0">Sectores</h3>
+                        </div>
+
+                        <div>
+                            <button (click)="goSectorEdit(0)" class="btn btn-sm btn-primary">Agregar</button>
+                            <!--<button (click)="printSectores()" class="btn btn-sm btn-youtube">Exportar</button>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let sector of sectores" (click)="goSectorEdit(sector.sector_id)">
+                                <td *ngIf="sector.sector_id > 0">{{sector.sector_id }}</td>
+                                <td *ngIf="sector.sector_id > 0">{{sector.name }}</td>
+                                <td *ngIf="sector.sector_id > 0" [style.color]="setColor(sector.status)">{{getStatus(sector.status)}}</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-8 mb-5 mb-xl-0">
+            <div class="card bg-default shadow">
+                <div class="card-header bg-transparent border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="text-white mb-0">Locales</h3>
+                        </div>
+                        <div class="col-lg-3">
+                            <select class="custom-select" [(ngModel)]="sector_id">
+                                  <option *ngFor="let sector of sectores" value="{{sector.sector_id}}" selected>{{ sector.name }}</option>                          
+                              </select>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-info" (click)="getLocales()">Filtrar</button>
+                            <button (click)="printLocales()" class="btn btn-sm btn-youtube">Exportar</button>
+                            <button (click)="goLocalEdit(0)" class="btn btn-sm btn-primary">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-dark table-flush">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Sector</th>
+                                <th scope="col">Inquilino</th>
+                                <th scope="col">Propietario</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let local of locales" (click)="goLocalEdit(local.local_id)">
+                                <td>{{local.local_id}}</td>
+                                <td>{{local.name}}</td>
+                                <td>{{local.sector}}</td>
+                                <td>{{local.inquilino}}</td>
+                                <td>{{local.propietario}}</td>
+                                <td [style.color]="setColor(local.status)">{{getStatus(local.status)}}</td>
+                                <td class="text-right">
+                                    <div>
+                                        <i class="ni ni-settings-gear-65" (click)="goLocalEdit(local.local_id)"></i>
+                                    </div>
+                                    <div>
+
+                                        <i class="ni ni-bullet-list-67"></i>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <app-info-data [flagData]="flagLocal"></app-info-data>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,82 @@
+<div class="header bg-gradient-danger pb-8 pt-5 ">
+
+</div>
+
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="text-black mb-0">Preguntas</h3>
+                        </div>
+                        <div class="col-lg-2" *ngIf="flagAdmin">
+                            <span>Rol</span>
+                            <select class="custom-select" [(ngModel)]="rol_id">
+                                    <option *ngFor="let rol of roles" value="{{rol.rol_id}}" selected>{{ rol.name }}</option>                          
+                                </select>
+                        </div>
+                        <div class="col-lg-2" *ngIf="flagAdmin">
+                            <span>Estado</span>
+                            <select class="custom-select" [(ngModel)]="status_id">
+                                    <option *ngFor="let statu of status" value="{{statu.status_id}}" selected>{{ statu.name }}</option>                          
+                                </select>
+
+                        </div>
+                        <div>
+                            <button *ngIf="flagAdmin" class="btn btn-sm btn-info" (click)="getQuestions( status_id, rol_id )">Filtrar</button>
+                            <button *ngIf="flagInquilino" [routerLink]="['/communication/question-edit/0']" class="btn btn-sm btn-primary">Agregar</button>
+                            <button *ngIf="flagAdmin" (click)="printQuestions()" class="btn btn-sm btn-youtube">Exportar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Asunto</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col" *ngIf="flagAdmin">Usuario</th>
+                                <th scope="col" *ngIf="flagAdmin">Rol</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let question of questions">
+
+                                <td [routerLink]="['/communication/question-view/' + question.question_id]">{{question.question_id}}</td>
+                                <td [routerLink]="['/communication/question-view/' + question.question_id]">{{question.subject}}</td>
+                                <td [routerLink]="['/communication/question-view/' + question.question_id]">{{question.email}}</td>
+                                <td>{{question.telephone}}</td>
+                                <td *ngIf="flagAdmin">{{question.user}}</td>
+                                <td *ngIf="flagAdmin">{{question.rol}}</td>
+                                <td [style.color]="setColor(question.status)">{{getStatus(question.status)}}</td>
+
+                                <td class="text-right">
+                                    <div ngbDropdown placement="bottom-right">
+                                        <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                            <a *ngIf="flagInquilino" class="dropdown-item" href="javascript:void(0)" [routerLink]="['/communication/question-edit/' + question.question_id]">Actualizar</a>
+                                            <a *ngIf="flagAdmin" class="dropdown-item" href="javascript:void(0)" [routerLink]="['/communication/question-edit/' + question.question_id +'/response-edit/0']">Responder</a>
+                                            <a class="dropdown-item" href="javascript:void(0)" (click)="openDialog( question.question_id )">Ver respuestas</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <app-info-data [flagData]="flagQuestions"></app-info-data>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

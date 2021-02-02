@@ -1,0 +1,91 @@
+<div class="header bg-gradient-danger pb-8 pt-5 ">
+
+</div>
+
+
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-3 mb-5 mb-xl-0">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0">Roles</h3>
+                        </div>
+                        <div class="col text-right">
+                            <!-- <a href="#!" class="btn btn-sm btn-primary">Agregar</a>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let rol of roles" (click)="goRolEdit(rol.rol_id)">
+                                <th *ngIf="rol.rol_id > 0">{{rol.rol_id }}</th>
+                                <th *ngIf="rol.rol_id > 0">{{rol.name }}</th>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-9">
+            <div class="card bg-default shadow">
+                <div class="card-header bg-transparent border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="text-white mb-0">Usuarios</h3>
+                        </div>
+                        <div class="col-lg-3">
+                            <select class="custom-select" [(ngModel)]="rol_id">
+                                  <option *ngFor="let rol of roles" value="{{rol.rol_id}}" selected>{{ rol.name }}</option>                          
+                              </select>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-info" (click)="getUsers( rol_id )">Filtrar</button>
+                            <button (click)="printUsers()" class="btn btn-sm btn-youtube">Exportar</button>
+                            <button (click)="goUserEdit(0)" class="btn btn-sm btn-primary">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-dark table-flush">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Rol</th>
+                                <th scope="col">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users" (click)="goUserEdit(user.user_id)">
+                                <td>{{user.user_id}}</td>
+                                <td>{{user.first_name}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.rol}}</td>
+                                <td [style.color]="setColor(user.status)">{{getStatus(user.status)}}</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

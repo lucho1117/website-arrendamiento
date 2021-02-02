@@ -1,0 +1,18 @@
+<mat-dialog-content class="mat-typography">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <p class="lead"><strong>ID: </strong> {{ data.local.local_id }}</p>
+            <h2 class="display-4">{{ data.local.name }}</h2>
+            <p class="lead"><strong>Propietario: </strong> {{ data.local.propietario }}</p>
+            <p class="lead"><strong>Inquilino: </strong> {{ data.local.inquilino }}</p>
+            <p class="lead"><strong>Sector: </strong> {{ data.local.sector }}</p>
+            <p class="lead"><strong>Descripción: </strong>{{ data.local.description }}</p>
+
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="btn btn-success" [routerLink]="['local/local-edit/' ] + data.local.local_id " mat-dialog-close>Actualizar</button>
+    <button class="btn btn-warning" mat-dialog-close>Salir</button>
+</mat-dialog-actions>
