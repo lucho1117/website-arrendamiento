@@ -6,7 +6,7 @@ import { Users } from './models/users';
 })
 export class AppConfigService {
 
-  private urlBase = 'http://localhost:8080/pg2/api-laravel/public/api/';
+  private urlBase = 'http://localhost/api-arrendamiento/public/api/';
   private localStorageService;
   private currentSession: any = null;
   constructor() {
