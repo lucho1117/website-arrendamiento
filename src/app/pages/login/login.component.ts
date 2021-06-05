@@ -32,6 +32,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login() {
+
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: 'info',
+      text: 'Espere por favor'
+    });
+    Swal.showLoading();
+
     this.user = this.formLogin.value;
     this.userService.postLogin( this.user ).subscribe(
       data => {
@@ -39,6 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.tostr.success(data.message);
           this.appConfigService.setCurrentSession(data.data);
           this.router.navigate(['user-profile']);
+          Swal.close();
         } else {
           Swal.fire({ icon: 'error',
           title: data.status,

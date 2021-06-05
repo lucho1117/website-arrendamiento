@@ -27,9 +27,8 @@ export class AppConfigService {
     this.localStorageService.setItem('currentUser', JSON.stringify(any));
   }
 
-  
-  loadSessionData(): any{
-    var sessionStr = this.localStorageService.getItem('currentUser');
+  loadSessionData(): any {
+    const sessionStr = this.localStorageService.getItem('currentUser');
     return (sessionStr) ? <any> JSON.parse(sessionStr) : null;
   }
 
